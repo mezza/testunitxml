@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Test::Unit::XML</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Test::Unit::XML</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/test/unit/xml/conditionals_rb.html">
+                lib/test/unit/xml/conditionals.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/test/unit/xml/xmlequalfilter_rb.html">
+                lib/test/unit/xml/xmlequalfilter.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/test/unit/xml/nodeiterator_rb.html">
+                lib/test/unit/xml/nodeiterator.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/test/unit/xml/xml_assertions_rb.html">
+                lib/test/unit/xml/xml_assertions.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000009">assert_xml_equal</a>&nbsp;&nbsp;
+      <a href="#M000010">assert_xml_not_equal</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="XML/Conditionals.html" class="link">Test::Unit::XML::Conditionals</a><br />
+Class <a href="XML/NodeIterator.html" class="link">Test::Unit::XML::NodeIterator</a><br />
+Class <a href="XML/XmlEqualFilter.html" class="link">Test::Unit::XML::XmlEqualFilter</a><br />
+
+    </div>
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000009" class="method-detail">
+        <a name="M000009"></a>
+
+        <div class="method-heading">
+          <a href="XML.src/M000009.html" target="Code" class="method-signature"
+            onclick="popupCode('XML.src/M000009.html');return false;">
+          <span class="method-name">assert_xml_equal</span><span class="method-args">(expected_doc, actual_doc, message = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+This method checks whether two well-formed <a href="XML.html">XML</a>
+documents are equal. Two <a href="XML.html">XML</a> documents are
+considered equal if:
+</p>
+<ul>
+<li>They contain the same type of nodes, in the same order, except for text
+nodes that are empty, or contain only whitespace. Such text nodes are
+ignored.
+
+</li>
+<li>The corresponding nodes in the two documents are equal.
+
+</li>
+</ul>
+<p>
+Nodes are tested for equality as follows:
+</p>
+<table>
+<tr><td valign="top"><a href="XML.html">XML</a> Declarations:</td><td><a href="XML.html">XML</a> declarations are equal if they have the same
+version, encoding, and stand-alone pseudo-attributes.
+
+</td></tr>
+<tr><td valign="top">Doctype:</td><td>Doctypes are equal if they fulfill all of the following conditions:
+
+<ul>
+<li>They have the same public identifier, or neither has a public identifier
+
+</li>
+<li>If one of the doctypes has a system identifier that is a URN, the other
+doctype must have a system identifier that is the same URN. System
+identifiers that are URLs are ignored for comparison purposes. The reason
+is that the same DTD is very often stored in many different locations (for
+example different directories on different computers). Therefore the
+physical location of the DTD does not say anything useful about whether two
+documents are equal.
+
+</li>
+<li>An entity declaration present in one of the doctype declarations must also
+be present in the other.
+
+</li>
+<li>A notation declaration present in one of the doctype declarations must also
+be present in the other.
+
+</li>
+</ul>
+</td></tr>
+<tr><td valign="top">Internal General Entity Declaration:</td><td>Internal General entity declarations are equal if they have the same name,
+and the same value.
+
+</td></tr>
+<tr><td valign="top">External General Entity Declaration:</td><td>External general entity declarations are equal if they have the same name,
+and if the identifiers are of the same type (PUBLIC or SYSTEM) and have the
+same value. Note that if the identifiers are URLs, a comparison may fail
+even though both URLS point to the same resource, for example if one URL is
+relative and the other is absolute.
+
+</td></tr>
+<tr><td valign="top">Notation Declaration:</td><td>Notation declarations are equal if they have the same name, and if the
+identifiers are of the same type (PUBLIC or SYSTEM) and have the same
+value.
+
+</td></tr>
+<tr><td valign="top">Elements:</td><td>Elements are considered equal if they have the same generic identifier (tag
+name), belong to the same namespace, and have the same attributes. Note
+that the namespace <em>prefixes</em> of two elements may be different as
+long as they belong to the same namespace.
+
+</td></tr>
+<tr><td valign="top">Attributes:</td><td>Attributes are equal if they belong to the same namespace, have the same
+name, and the same value.
+
+</td></tr>
+<tr><td valign="top">Namespace Declarations:</td><td>Namespace <em>declarations</em> (attributes named
+<tt>xmlns:<em>prefix</em></tt>) are ignored. There are several reasons for
+this:
+
+<ul>
+<li>As long as two elements or attributes belong to the same namespace, it does
+not matter what prefixes are used. <a href="XML.html">XML</a> processors
+may also change prefixes in unpredictable ways without this being an error.
+
+</li>
+<li><a href="XML.html">XML</a> processors may <em>move</em> namespace
+declarations from one element to another (usually an ancestor, sometimes a
+descendant) without this being an error, or under control by the
+programmer.
+
+</li>
+<li><a href="XML.html">XML</a> processors may <em>add</em> extraneous namespace
+declarations in a manner that is hard for programmers to control.
+
+</li>
+</ul>
+</td></tr>
+<tr><td valign="top">Processing Instructions:</td><td>Processing instructions are considered equal if the string values of their
+targets and contents are equal.
+
+</td></tr>
+<tr><td valign="top">Text:</td><td>Text nodes are equal if their values are equal. However, empty text nodes,
+and text nodes containing only whitespace are ignored.
+
+</td></tr>
+<tr><td valign="top">CDATA:</td><td>CDATA nodes are equal if their text content is equal. Whitespace is
+<em>not</em> normalized.
+
+</td></tr>
+<tr><td valign="top">Comments:</td><td>Comments are equal if they have the same content.
+
+</td></tr>
+</table>
+<p>
+The <tt>expected_doc</tt> and <tt>actual_doc</tt> arguments to this method
+may be of the following types:
+</p>
+<ul>
+<li>A <tt><a href="../../REXML.html">REXML</a></tt> node, usually a
+<tt>REXML::Document</tt> or <tt>REXML::Element</tt>
+
+</li>
+<li>A <tt>File</tt> or other <tt>IO</tt> object representing an <a
+href="XML.html">XML</a> document
+
+</li>
+<li>A string containing an <a href="XML.html">XML</a> document
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000010" class="method-detail">
+        <a name="M000010"></a>
+
+        <div class="method-heading">
+          <a href="XML.src/M000010.html" target="Code" class="method-signature"
+            onclick="popupCode('XML.src/M000010.html');return false;">
+          <span class="method-name">assert_xml_not_equal</span><span class="method-args">(expected_doc, actual_doc, message = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+This method compares two <a href="XML.html">XML</a> documents and returns
+<tt>true</tt> if they are <em>not</em> equal, <tt>false</tt> otherwise.
+This is the inverse of <a href="XML.html#M000009">assert_xml_equal</a>.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

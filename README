@@ -1,0 +1,131 @@
+= Test::Unit::XML
+== An XML Test Framework
+
+Version: 0.1.6
+
+Author: Henrik Mårtensson
+
+(c) 2006 by Henrik Mårtensson
+
+== Introduction
+
+Test::Unit::XML extends the Test::Unit framework with
+an assertion for testing well-formed XML documents.
+
+Using Test::Unit::XML is easy. All you have to do is to
+require +testunitxml+, and you will then have an
++assert_xml_equal+ assertion available in the
+Test::Unit::TestCase class.
+
+In addition to the API documentation included in the package, you can get information about how
+to use Test::Unit::XML from the following sources:
+
+* The online tutorial[http://kallokain.blogspot.com/2006/01/testunitxml-quick-start-tutorial.html] at
+  the Kallokain[http://kallokain.blogspot.com/] blog.
+* The {test cases}[link:../../test/] included in the distribution package.
+
+== Installation
+
+=== Install Using the +RubyGem+ Package Manager
+
+The easiest way to install Test::Unit::XML is to make a remote installation via the RubyGem
+package manager:
+
+<tt>gem install testunitxml</tt>
+
+If you have downloaded a gem package from Rubyforge, you can do a local installation:
+
+<tt>cd <em>download_directory_path</em></tt>
+
+<tt>gem install testunitxml -l</tt>
+
+=== Install from a Zip file or Tarball
+
+If you do not have RubyGem installed, you can download a Zip file or tarball and install
+from it instead:
+
+1::  Unpack the Zip or tarball archive.
+2::  cd to the directory you just unpacked.
+3::  Run the command:
+     <tt>ruby setup.rb install</tt>
+
+
+
+== What Does _Equal_ XML Documents Mean?
+
+It is hard to define exactly what _equal_ means in the
+context of XML documents. I have tried to follow W3C
+XML recommendations as far as possible. There are a
+few things worthy of note:
+
+* Namespace _declarations_, i.e. attributes that declare
+  namespaces, are ignored for comparison purposes. (The
+  namespaces _are_ used in comparisons.) The reason is
+  that XML processors may move the declarations from one
+  element to another, or change prefixes in ways that
+  cannot be directly controlled by a programmer. For
+  example, two different XSLT processors could use
+  the same stylesheet and produce XML documents that use
+  different namespace prefixes, and have declarations
+  on different elements, but are still considered equal.
+
+* Text nodes that are empty or contain only whitespace
+  are ignored for comparison purposes. This makes it
+  easier to test output from various transformation
+  engines. These often produce extraneous whitespace.
+
+== The Future
+
+There are a few things in the pipeline:
+
+* assert_xml_equal_structure - checks that the structure
+  of two documents are equal, but ignores content, attributes,
+  processing istructions, comments, CDATA, and doctype
+  declarations.
+* assert_xml_similar - Like assert_xml_equal, but ignores the
+  order of child elements.
+* Configurability. It _might_ be useful to be able to set
+  configuration options for testing. I'll have to think a
+  bit about this though.
+* Document difference functions, like the Java XMLUnit test
+  suite.
+
+I plan to implement these features as I need them in other
+projects, so there is no time plan, and no guarantee as to the
+order in which I'll implement anything.
+
+== License
+
+See the {MIT-LICENSE}[link:files/MIT-LICENSE.html] file.
+
+== Contact
+
+You can email bug reports, opinions and questions to
+mailto:self@henrikmartensson.org. You may also wish to visit
+my home page, www.henrikmartensson.org, for more information
+about Test::Unit::XML and other projects. I will write about
+Test::Unit::XML at the the Kallokain[http://kallokain.blogspot.com/]
+blog. You are welcome to visit, and comment.
+
+If you find Test::Unit::XML useful, please do tell me about it. I would like
+to list projects that use it on the {Test::Unit::XML web site}[http://testunitxml.rubyforge.org/].
+
+If you find Test::Unit::XML lacking in some respect, or buggy,
+I am even more interested. I can't fix bugs I do not know about.
+
+Finally, if you write about Test::Unit::XML, I'd like to link to
+the article on my web site, or at least mention it if you write
+for a magazine, so please tell me.
+
+== Ruby 1.9.1
+
+To use this gem with Ruby 1.9.1, you'll need to require the
+'test-unit' gem to fix some issue with the unit test libraries
+shipping with Ruby 1.9.1.
+
+Just add: gem 'test-unit'
+
+== Addendum 13th April 2010 - Merul Patel
+
+This github repository has just been created and the gem needs
+to be repackaged so that the tests run

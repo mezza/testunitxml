@@ -1,0 +1,22 @@
+= Changes
+
+== Version 0.1.6 (Merul Patel)
+* Fixed a couple of bugs that prevent the gem from being used with Ruby 1.9.1
+
+== Version 0.1.5
+
+* Fixed a bug when comparing attributes containing entity references.
+* Added an <tt>assert_xml_not_equal</tt> method.
+
+== Version 0.1.4
+
+* Added support for Doctype comparisons in +assert_xml_equal+
+* Added <tt>setup.rb</tt> file to distribution packages
+* Added installation section to README file
+* Added links to online tutorial to README file
+* Added CHANGES file
+
+
+== Version 0.1.3
+
+The initial release.

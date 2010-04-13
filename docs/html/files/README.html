@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Wed Jan 25 08:59:19 CET 2006</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1><a href="../classes/Test/Unit/XML.html">Test::Unit::XML</a></h1>
+<h2>An XML <a href="../classes/Test.html">Test</a> Framework</h2>
+<p>
+Version: 0.1.5
+</p>
+<p>
+Author: Henrik Mårtensson
+</p>
+<p>
+&#169; 2006 by Henrik Mårtensson
+</p>
+<h2>Introduction</h2>
+<p>
+<a href="../classes/Test/Unit/XML.html">Test::Unit::XML</a> extends the <a
+href="../classes/Test/Unit.html">Test::Unit</a> framework with an assertion
+for testing well-formed XML documents.
+</p>
+<p>
+Using <a href="../classes/Test/Unit/XML.html">Test::Unit::XML</a> is easy.
+All you have to do is to require <tt>testunitxml</tt>, and you will then
+have an <tt>assert_xml_equal</tt> assertion available in the <a
+href="../classes/Test/Unit/TestCase.html">Test::Unit::TestCase</a> class.
+</p>
+<p>
+In addition to the API documentation included in the package, you can get
+information about how to use <a
+href="../classes/Test/Unit/XML.html">Test::Unit::XML</a> from the following
+sources:
+</p>
+<ul>
+<li>The online <a
+href="http://kallokain.blogspot.com/2006/01/testunitxml-quick-start-tutorial.html">tutorial</a>
+at the <a href="http://kallokain.blogspot.com/">Kallokain</a> blog.
+
+</li>
+<li>The <a href="../../../test">test cases</a> included in the distribution
+package.
+
+</li>
+</ul>
+<h2>Installation</h2>
+<h3>Install Using the <tt>RubyGem</tt> Package Manager</h3>
+<p>
+The easiest way to install <a
+href="../classes/Test/Unit/XML.html">Test::Unit::XML</a> is to make a
+remote installation via the RubyGem package manager:
+</p>
+<p>
+<tt>gem install testunitxml</tt>
+</p>
+<p>
+If you have downloaded a gem package from Rubyforge, you can do a local
+installation:
+</p>
+<p>
+<tt>cd <em>download_directory_path</em></tt>
+</p>
+<p>
+<tt>gem install testunitxml -l</tt>
+</p>
+<h3>Install from a Zip file or Tarball</h3>
+<p>
+If you do not have RubyGem installed, you can download a Zip file or
+tarball and install from it instead:
+</p>
+<table>
+<tr><td valign="top">1:</td><td>Unpack the Zip or tarball archive.
+
+</td></tr>
+<tr><td valign="top">2:</td><td>cd to the directory you just unpacked.
+
+</td></tr>
+<tr><td valign="top">3:</td><td>Run the command: <tt>ruby setup.rb install</tt>
+
+</td></tr>
+</table>
+<h2>What Does <em>Equal</em> XML Documents Mean?</h2>
+<p>
+It is hard to define exactly what <em>equal</em> means in the context of
+XML documents. I have tried to follow W3C XML recommendations as far as
+possible. There are a few things worthy of note:
+</p>
+<ul>
+<li>Namespace <em>declarations</em>, i.e. attributes that declare namespaces,
+are ignored for comparison purposes. (The namespaces <em>are</em> used in
+comparisons.) The reason is that XML processors may move the declarations
+from one element to another, or change prefixes in ways that cannot be
+directly controlled by a programmer. For example, two different XSLT
+processors could use the same stylesheet and produce XML documents that use
+different namespace prefixes, and have declarations on different elements,
+but are still considered equal.
+
+</li>
+<li>Text nodes that are empty or contain only whitespace are ignored for
+comparison purposes. This makes it easier to test output from various
+transformation engines. These often produce extraneous whitespace.
+
+</li>
+</ul>
+<h2>The Future</h2>
+<p>
+There are a few things in the pipeline:
+</p>
+<ul>
+<li>assert_xml_equal_structure - checks that the structure of two documents are
+equal, but ignores content, attributes, processing istructions, comments,
+CDATA, and doctype declarations.
+
+</li>
+<li>assert_xml_similar - Like assert_xml_equal, but ignores the order of child
+elements.
+
+</li>
+<li>Configurability. It <em>might</em> be useful to be able to set
+configuration options for testing. I&#8217;ll have to think a bit about
+this though.
+
+</li>
+<li>Document difference functions, like the Java XMLUnit test suite.
+
+</li>
+</ul>
+<p>
+I plan to implement these features as I need them in other projects, so
+there is no time plan, and no guarantee as to the order in which I&#8217;ll
+implement anything.
+</p>
+<h2>License</h2>
+<p>
+See the <a href="MIT-LICENSE.html">MIT-LICENSE</a> file.
+</p>
+<h2>Contact</h2>
+<p>
+You can email bug reports, opinions and questions to <a
+href="mailto:self@henrikmartensson.org">self@henrikmartensson.org</a>. You
+may also wish to visit my home page, <a
+href="http://www.henrikmartensson.org">www.henrikmartensson.org</a>, for
+more information about <a
+href="../classes/Test/Unit/XML.html">Test::Unit::XML</a> and other
+projects. I will write about <a
+href="../classes/Test/Unit/XML.html">Test::Unit::XML</a> at the the <a
+href="http://kallokain.blogspot.com/">Kallokain</a> blog. You are welcome
+to visit, and comment.
+</p>
+<p>
+If you find <a href="../classes/Test/Unit/XML.html">Test::Unit::XML</a>
+useful, please do tell me about it. I would like to list projects that use
+it on the <a href="http://testunitxml.rubyforge.org/">Test::Unit::XML web
+site</a>.
+</p>
+<p>
+If you find <a href="../classes/Test/Unit/XML.html">Test::Unit::XML</a>
+lacking in some respect, or buggy, I am even more interested. I can&#8217;t
+fix bugs I do not know about.
+</p>
+<p>
+Finally, if you write about <a
+href="../classes/Test/Unit/XML.html">Test::Unit::XML</a>, I&#8217;d like to
+link to the article on my web site, or at least mention it if you write for
+a magazine, so please tell me.
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

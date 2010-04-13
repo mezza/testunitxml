@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>compare_xml_nodes (Test::Unit::XML::Conditionals)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/test/unit/xml/conditionals.rb, line 24</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">compare_xml_nodes</span>(<span class="ruby-identifier">expected_node</span>, <span class="ruby-identifier">actual_node</span>)
+          <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">actual_node</span>.<span class="ruby-identifier">instance_of?</span> <span class="ruby-identifier">expected_node</span>.<span class="ruby-identifier">class</span>
+          <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">actual_node</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>
+            <span class="ruby-comment cmt"># TODO: Implement Document comparison</span>
+            <span class="ruby-keyword kw">true</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">DocType</span>
+            <span class="ruby-identifier">compare_doctypes</span>(<span class="ruby-identifier">expected_node</span>, <span class="ruby-identifier">actual_node</span>)
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Element</span> <span class="ruby-operator">:</span>
+            <span class="ruby-identifier">compare_elements</span>(<span class="ruby-identifier">expected_node</span>, <span class="ruby-identifier">actual_node</span>)
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">CData</span>
+            <span class="ruby-identifier">compare_texts</span>(<span class="ruby-identifier">expected_node</span>, <span class="ruby-identifier">actual_node</span>)
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Text</span>
+            <span class="ruby-identifier">compare_texts</span>(<span class="ruby-identifier">expected_node</span>, <span class="ruby-identifier">actual_node</span>)
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Comment</span>
+            <span class="ruby-identifier">compare_comments</span>(<span class="ruby-identifier">expected_node</span>, <span class="ruby-identifier">actual_node</span>)
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Instruction</span>
+            <span class="ruby-identifier">compare_pi</span>(<span class="ruby-identifier">expected_node</span>, <span class="ruby-identifier">actual_node</span>)
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">XMLDecl</span>
+            <span class="ruby-identifier">compare_xml_declaration</span>(<span class="ruby-identifier">expected_node</span>, <span class="ruby-identifier">actual_node</span>)
+          <span class="ruby-comment cmt">#when REXML::Entity</span>
+          <span class="ruby-comment cmt">#  compare_xml_entities(expected_node, actual_node)</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Unknown node type #{actual_node.class}&quot;</span>
+            <span class="ruby-keyword kw">false</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
