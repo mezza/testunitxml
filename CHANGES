@@ -1,7 +1,7 @@
 = Changes
 
 == Version 0.1.6 (Merul Patel)
-* Fixed a couple of bugs that prevent the gem from being used with Ruby 1.9.1
+* Fixed a couple of bugs that prevent the gem from being used with Ruby 1.9.2
 
 == Version 0.1.5
 
