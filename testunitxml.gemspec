@@ -1,5 +1,5 @@
 spec = Gem::Specification.new do |s|
-  s.name = 'testunitxml'
+  s.name = 'mezza-testunitxml'
   s.version = '0.1.6'
   s.authors = ['Henrik Mårtensson', "Merul Patel"]
   s.email = ['dag.henrik.martensson@gmail.com', 'merul.patel@gmail.com']
