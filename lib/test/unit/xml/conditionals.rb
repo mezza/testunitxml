@@ -29,7 +29,7 @@ module Test
             true
           when REXML::DocType
             compare_doctypes(expected_node, actual_node)
-          when REXML::Element :
+          when REXML::Element
             compare_elements(expected_node, actual_node)
           when REXML::CData
             compare_texts(expected_node, actual_node)
