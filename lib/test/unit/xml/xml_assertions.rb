@@ -1,4 +1,5 @@
 #! /usr/bin/ruby
+# encoding: utf-8
 
 require 'rexml/document'
 require 'test/unit/xml/attributes_mixin' # Must be required after rexml/document

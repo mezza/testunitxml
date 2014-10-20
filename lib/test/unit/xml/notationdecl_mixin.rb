@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module REXML
 
   # The REXML::NotationDecl mix-in adds methods that are useful for

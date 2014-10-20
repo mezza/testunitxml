@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 =begin rdoc
 This file mixes in XML assertions in the Test::Unit::TestCase
 class.
