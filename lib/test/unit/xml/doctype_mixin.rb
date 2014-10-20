@@ -46,7 +46,7 @@ module REXML
     private
     
     def strip_quotes(quoted_string)
-      quoted_string =~ /^[\'\"].*[\´\"]$/ ?
+      quoted_string =~ /^[\'\"].*[\'\"]$/ ?
         quoted_string[1, quoted_string.length-2] :
         quoted_string
     end

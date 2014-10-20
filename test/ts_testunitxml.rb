@@ -1,4 +1,4 @@
-#! /usr/bin/ruby
+#! /usr/bin/env ruby
 
 @@lib_path = File.join(File.dirname(__FILE__), "..", "lib")
 $:.unshift @@lib_path 
